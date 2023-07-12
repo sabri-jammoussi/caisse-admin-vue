@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from   '../components/pages/Home.vue'
 import About from   '../components/pages/About.vue'
 import Listcaisse from '../components/caisse/ListCaisse.vue'
-import caisse from '../components/caisse/Caisse1.vue'
+import Ajoutercaisse from '../components/caisse/AjouterCaisses.vue'
+import Editcaisse from '../components/caisse/EditCaisses.vue'
 import Listpersonnel from '../components/personnel/ListPersonnel.vue'
 import NotFound from   '../components/NotFound.vue'
 import { RouterLink } from 'vue-router';
+
 const routes =[
     {
     path: '/',
@@ -24,9 +26,14 @@ const routes =[
         
     },
     {
-        path : '/caisse/:id',
-        name:"Caisse",
-        component : caisse
+        path : '/AjouterCaisse',
+        name:"Ajouter Caisse",
+        component : Ajoutercaisse
+    },
+    {
+        path : '/EditCaisse/:id',
+        name:"EditCaisse",
+        component : Editcaisse
     },
     {
         path : '/listpersonnel',
