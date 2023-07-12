@@ -1,0 +1,52 @@
+{
+  "caisses": [
+    {
+      "Code": "az",
+      "Intitule": "azerty",
+      "Depot": "magasin Tanyour",
+      "Souches": "Mestir",
+      "id": 2
+    },
+    {
+      "Code": "a",
+      "Intitule": "Caisse 1",
+      "Depot": "magasin Tanyour",
+      "Souches": "Sfax",
+      "id": 3
+    },
+    {
+      "Code": "a",
+      "Intitule": "a",
+      "Depot": "magasin Tanyour",
+      "Souches": "Mestir",
+      "id": 10
+    },
+    {
+      "Code": "asdfasdf",
+      "Intitule": "asdfasdf",
+      "Depot": "magasin Tanyour",
+      "Souches": "Mestir",
+      "id": 18
+    }
+  ],
+  "depots": [
+    {
+      "no": 1,
+      "intitule": "magasin Tanyour"
+    },
+    {
+      "no": 2,
+      "intitule": "magasin jammel"
+    }
+  ],
+  "souches": [
+    {
+      "no": 1,
+      "intitule": "Sfax"
+    },
+    {
+      "no": 2,
+      "intitule": "Mestir"
+    }
+  ]
+}
