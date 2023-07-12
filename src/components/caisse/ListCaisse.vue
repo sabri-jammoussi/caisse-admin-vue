@@ -1,76 +1,126 @@
 <template>
-  <v-row>
-    <v-col
-      v-for="(photo, index) in photos"
-      :key="index"
-      class="d-flex child-flex"
-      cols="3"
-    >
-    <router-link :to="photo.id" >
-      <v-img
-        :src="photo.url"
-        :lazy-src="photo.url"
-        aspect-ratio="1"
-       
-        class="bg-grey-lighten-2"
-      >
+  <div>
+    <router-link to="/AjouterCaisse">
+      <v-btn
+        >Ajouter Caisse
+        <v-tooltip activator="parent" location="end">AjouterCaisse</v-tooltip>
+      </v-btn>
+    </router-link>
+    <v-table>
+      <thead>
+        <tr>
+          <th class="text-left">Code</th>
+          <th class="text-left">Intitule</th>
+          <th class="text-left">Depot</th>
+          <th class="text-left">Souche</th>
+          <th class="text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody v-if="caisses.length > 0">
+        <tr v-for="(item, index) in caisses" :key="index">
+          <td>{{ item.Code }}</td>
+          <td>{{ item.Intitule }}</td>
+          <td>{{ item.Depot }}</td>
+          <td>{{ item.Souches }}</td>
+          <td>
+            <router-link :to="`/EditCaisse/${item.id}`">
+            <v-btn v-bind="attrs" v-on="on">
+                  <v-tooltip activator="parent" location="end">Consulter</v-tooltip>
+              <v-icon
+                class="text-subtitle-1"
+                color="blue"
+                @click.stop="editCaisse(item.id)"
+                style="margin-right: 12px"
+                >mdi-magnify
+             
+                </v-icon>
+            </v-btn>
+            </router-link>
+                <v-btn v-bind="attrs" v-on="on">
+                             <v-tooltip activator="parent" location="end">Supprimer</v-tooltip>
+                  <v-icon
+                    class="text-subtitle-1"
+                    color="red"
+                    @click.stop="deleteCaisse(item.id)"
+                  >
+                    mdi-delete
+                  </v-icon>
+                </v-btn>
+             
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td>Loading ...</td>
+        </tr>
+      </tbody>
+    </v-table>
 
-      
-        <template v-slot:placeholder>
-          <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
+    <v-dialog v-model="deleteDialog" max-width="400">
+      <v-card>
+        <v-card-title>Delete Confirmation</v-card-title>
+        <v-card-text>
+          Voulez-vous vraiment supprimer cette caisse ?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" text @click="deleteDialog = false"
+            >Annuler</v-btn
           >
-            <v-progress-circular
-              indeterminate
-              color="grey-lighten-5"
-            ></v-progress-circular>
-            
-          </v-row>
-        </template>
-      <div class="photo-name">{{ photo.name }}</div>
-      </v-img>
-             </router-link>
-    </v-col>
-    
-  </v-row>
-  
+          <v-btn color="red" text @click="confirmDelete">Supprimer</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  name: "caisses",
   data() {
     return {
-      photos: [],
+      caisses: [],
+      deleteDialog: false,
+      caisseToDelete: null,
     };
   },
-  created() {
-    this.fetchPhotos();
+  mounted() {
+    this.getCaisses();
   },
   methods: {
-    fetchPhotos() {
-      // Replace this with your logic to fetch the list of photos
-      // Example:
-      // Call an API or fetch photos from a database
-      // Assign the fetched photos to the 'photos' data property
-
-      // Sample code to assign dummy photo data
-      this.photos = [
-        { id:"/caisse/1" ,url: 'data:image/jpeg;base64,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',name :'Caisse 1' },
-        { id:"/caisse/2" ,url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgH3Flk3DHc0-_R6l1jeX-YST6Y_9BM7iMyw&usqp=CAU' ,name:'Caisse 2'},
-        { id:"/caisse/3" ,url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNzFIg84R9-8QKDBwzUnKgUo1KeaT0ol-H2A&usqp=CAU' ,name:'Caisse 3'},
-        // ... add more photo objects as needed
-      ];
+    getCaisses() {
+      axios
+        .get("http://localhost:3000/caisses")
+        .then((res) => {
+          this.caisses = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    deleteCaisse(caisseId) {
+      this.caisseToDelete = caisseId;
+      this.deleteDialog = true;
+    },
+    confirmDelete() {
+      const caisseId = this.caisseToDelete;
+      axios
+        .delete(`http://localhost:3000/caisses/${caisseId}`)
+        .then((res) => {
+          // Handle successful deletion if needed
+          console.log(res);
+          // Refresh the list of caisses
+          this.getCaisses();
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          this.deleteDialog = false;
+        });
     },
   },
 };
 </script>
-<style scoped>
-.photo-name {
-  text-align: center;
-  color: #171616;
-  font-weight: bold;
-  margin-top: 308px;
-}
-</style>

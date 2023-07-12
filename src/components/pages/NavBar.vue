@@ -14,6 +14,7 @@
     value="home"
   >
     <router-link to="/" class="v-list-item__content">
+      <v-tooltip activator="parent" location="end">Home</v-tooltip>
       <span class="v-list-item__title">Home</span>
     </router-link>
   </v-list-item>
@@ -63,6 +64,7 @@
     value="about"
   >
     <router-link to="/about" class="v-list-item__content">
+      <v-tooltip activator="parent" location="end">About</v-tooltip>
       <span class="v-list-item__title">About</span>
     </router-link>
   </v-list-item>
