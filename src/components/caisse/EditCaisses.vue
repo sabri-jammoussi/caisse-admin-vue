@@ -26,11 +26,12 @@
       label="Souches"
     ></v-select>
 
-    <v-btn v-if="!editMode" @click="enableEditMode">Modifier</v-btn>
-    <v-btn v-else @click="submitChanges">Submit</v-btn>
-    <router-link to="/ListCaisse">
-      <v-btn>Retour</v-btn>
-    </router-link>
+    <v-btn v-if="!editMode" @click="enableEditMode" color="primary">Modifier</v-btn>
+<v-btn v-else @click="submitChanges" color="success">Submit</v-btn>
+<router-link to="/ListCaisse">
+  <v-btn color="red">Retour</v-btn>
+</router-link>
+
   </v-sheet>
   </v-card>
     </v-row>
@@ -114,3 +115,6 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+</style>

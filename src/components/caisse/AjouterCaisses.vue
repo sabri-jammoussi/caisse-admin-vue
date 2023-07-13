@@ -13,9 +13,9 @@
     <v-select v-model="state.Depot" :items="state.depotOptions" label="Depot" :error-messages="v$?.Depot?.$errors?.map(e => e.$message)"></v-select>
     <v-select v-model="state.Souches" :items="state.souchesOptions" label="Souches" :error-messages="v$?.Souches?.$errors?.map(e => e.$message)"></v-select>
 
-    <v-btn type ="submit">Ajouter</v-btn>
+    <v-btn type ="submit" color="#007bff">Ajouter</v-btn>
     <router-link to="/ListCaisse">
-      <v-btn>Annuler</v-btn>
+      <v-btn color="red">Annuler</v-btn>
     </router-link>
     </form>
   </v-sheet>
@@ -26,7 +26,7 @@ import axios from "axios";
 import router from "@/router/index";
 import { reactive, onMounted } from "vue";
 import { useVuelidate } from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import { required ,helpers } from '@vuelidate/validators'
 
 export default {
   name: "ADDCaisse",
@@ -45,10 +45,10 @@ export default {
     });
 
     const rules = {
-      Code: { required  },
-      Intitule: { required },
-      Depot: { required },
-      Souches: { required }
+      Code: { required : helpers.withMessage('Code is required', required) },
+      Intitule: { required : helpers.withMessage('Intitule is required', required) },
+      Depot: { required : helpers.withMessage('Depot is required', required) },
+      Souches: { required : helpers.withMessage('Souches is required', required) }
     };
 
     const v$ = useVuelidate(rules, state);
@@ -76,7 +76,7 @@ export default {
          console.log("+++++++++++++++++++++++++++++V$",v$.value)
         
         v$.value.$touch();
-        if (v$.value.$invalid) return;
+        if (v$.value.$invalid) return; // eli zedo afif
         
         const response = await axios.post(
           "http://localhost:3000/caisses",
