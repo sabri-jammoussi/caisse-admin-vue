@@ -1,4 +1,4 @@
-# test2
+# caisse-admin-vue
 
 ## Project setup
 ```
