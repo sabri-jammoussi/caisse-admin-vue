@@ -75,7 +75,7 @@ export default {
   methods: {
     getCaisses() {
       axios
-        .get("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/caisses")
+        .get("http://localhost:3000/caisses")
         .then((res) => {
           this.caisses = res.data;
         })
@@ -90,7 +90,7 @@ export default {
     confirmDelete() {
       const caisseId = this.caisseToDelete;
       axios
-        .delete(`https://my-json-server.typicode.com/sabri-jammoussi/mockJson/caisses/${caisseId}`)
+        .delete(`http://localhost:3000/caisses/${caisseId}`)
         .then((res) => {
           // Handle successful deletion if needed
           console.log(res);
