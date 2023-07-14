@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
    
-
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "serve": "vite preview",
     "build": "vite build",
     "lint": "vue-cli-service lint",
