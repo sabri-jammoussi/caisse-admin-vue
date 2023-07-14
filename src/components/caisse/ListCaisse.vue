@@ -92,7 +92,7 @@ export default {
   methods: {
     getCaisses() {
       axios
-        .get("http://localhost:3000/caisses")
+        .get("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/caisses")
         .then((res) => {
           this.caisses = res.data;
         })
