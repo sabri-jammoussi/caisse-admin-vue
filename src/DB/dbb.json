@@ -13,20 +13,6 @@
       "Depot": "magasin Tanyour",
       "Souches": "Sfax",
       "id": 3
-    },
-    {
-      "Code": "a",
-      "Intitule": "a",
-      "Depot": "magasin Tanyour",
-      "Souches": "Mestir",
-      "id": 10
-    },
-    {
-      "Code": "asdfasdf",
-      "Intitule": "asdfasdf",
-      "Depot": "magasin Tanyour",
-      "Souches": "Mestir",
-      "id": 18
     }
   ],
   "depots": [
