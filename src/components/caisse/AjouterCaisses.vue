@@ -79,7 +79,7 @@ export default {
 
     const getDepotOptions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/depots");
+        const response = await axios.get("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/depots");
         state.depotOptions = response.data.map((depot) => depot.intitule);
       } catch (error) {
         console.error(error);
@@ -88,7 +88,7 @@ export default {
 
     const getSouchesOptions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/souches");
+        const response = await axios.get("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/souches");
         state.souchesOptions = response.data.map((souche) => souche.intitule);
       } catch (error) {
         console.error(error);
@@ -101,7 +101,7 @@ const addCaisse = async () => {
     if (v$.value.$invalid) return;
 
     // Check if code already exists
-    const response = await axios.get("http://localhost:3000/caisses");
+    const response = await axios.get("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/caisses");
     const existingCaisse = response.data.find(
       (caisse) => caisse.Code === state.Code
     );
@@ -111,7 +111,7 @@ const addCaisse = async () => {
     }
 
     // Add the caisse
-    await axios.post("http://localhost:3000/caisses", {
+    await axios.post("https://my-json-server.typicode.com/sabri-jammoussi/mockJson/caisses", {
       Code: state.Code,
       Intitule: state.Intitule,
       Depot: state.Depot,
