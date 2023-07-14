@@ -20,5 +20,8 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
+### Page deploy 
+```
+https://sabri-jammoussi.github.io/caisse-admin-vue/
+```
 See [Configuration Reference](https://cli.vuejs.org/config/).
