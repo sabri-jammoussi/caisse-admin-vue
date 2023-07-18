@@ -8,8 +8,6 @@
               v-model="code"
               label="Code"
               :error-messages="v$.code.$errors.map((e) => e.$message)"
-              @blur="v$.code.touch"
-              @input="v$.code.$touch"
             ></v-text-field>
             <v-text-field
               v-model="intitule"
@@ -52,7 +50,7 @@ import router from "@/router/index";
 import { ref, onMounted } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-
+const { withMessage, withAsync } = helpers;
 export default {
   name: "ADDCaisse",
   setup() {
@@ -63,14 +61,38 @@ export default {
     const depotOptions = ref([]);
     const souchesOptions = ref([]);
 
+    const codeIsUnique = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/caisses?code=${code.value}`
+        );
+
+        const existingCaisse = response.data.find(
+          (caisse) => caisse.Code === code.value
+        );
+
+        if (existingCaisse) return false;
+        else return true;
+        /*    var result = existingCaisse ? false : true;
+        console.log("********************code unique22222",result)
+        return result; */
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    };
+
     const rules = {
-      code: { required: helpers.withMessage("Code obligatoire", required) },
-      intitule: {
-        required: helpers.withMessage("Intitule obligatoire", required),
+      code: {
+        required: withMessage("Code obligatoire", required),
+        custom: withMessage("Code existe déja", withAsync(codeIsUnique)),
       },
-      depot: { required: helpers.withMessage("Depot obligatoire", required) },
+      intitule: {
+        required: withMessage("Intitule obligatoire", required),
+      },
+      depot: { required: withMessage("Depot obligatoire", required) },
       souche: {
-        required: helpers.withMessage("Souches obligatoire", required),
+        required: withMessage("Souches obligatoire", required),
       },
     };
 
@@ -94,32 +116,10 @@ export default {
       }
     };
 
-    const validateCodeUniqueness = async (value) => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/caisses?code=${value}`
-        );
-        const existingCaisse = response.data.find(
-          (caisse) => caisse.Code === value
-        );
-        return !existingCaisse;
-      } catch (error) {
-        console.error(error);
-        return false;
-      }
-    };
-
     const addCaisse = async () => {
       try {
         v$.value.$touch();
         if (v$.value.$invalid) return;
-
-        // Execute the async validation
-        const result = await validateCodeUniqueness(code.value);
-        if (!result) {
-          alert("Le code existe déjà !! Veuillez entrer un code unique.");
-          return;
-        }
 
         // Add the caisse
         await axios.post("http://localhost:3000/caisses", {
@@ -148,7 +148,16 @@ export default {
       await getSouchesOptions();
     });
 
-    return { code, intitule, depot, souche, v$, addCaisse ,depotOptions,souchesOptions};
+    return {
+      code,
+      intitule,
+      depot,
+      souche,
+      v$,
+      addCaisse,
+      depotOptions,
+      souchesOptions,
+    };
   },
 };
 </script>
