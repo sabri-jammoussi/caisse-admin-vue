@@ -33,9 +33,9 @@
               @input="v$.souche.$touch"
             ></v-select>
 
-            <v-btn type="submit" color="#007bff">Ajouter</v-btn>
+            <v-btn type="submit" color="#007bff" class="button-group1">Ajouter</v-btn>
             <router-link to="/ListCaisse">
-              <v-btn color="red">Annuler</v-btn>
+              <v-btn color="red" class="button-group">Annuler</v-btn>
             </router-link>
           </form>
         </v-sheet>
@@ -161,3 +161,20 @@ export default {
   },
 };
 </script>
+<style scoped>
+.button-group1 {
+  align-content: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.button-group {
+  align-content: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-left: 80px;
+}
+
+.v-input__control--outlined.error--text {
+  border-color: red;
+}
+</style>
