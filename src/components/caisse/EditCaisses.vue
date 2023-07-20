@@ -32,25 +32,25 @@
               label="Souches"
             ></v-select>
 
-            <v-btn
+            <button
               v-if="!editMode"
               @click="enableEditMode"
               color="primary"
               class="button-group1"
-              >Modifier</v-btn
+              style="--clr:blue"
+              ><span>Modifier</span><i></i></button
             >
-            <v-btn v-else type="submit" color="success" class="button-group1"
-              >Submit</v-btn
+            <button v-else type="submit" style="--clr:#39FF14" class="button-group1"
+              ><span>Submit</span><i></i></button
             >
-            <v-btn
+            <button
               v-if="!editMode"
-              color="red"
+              style="--clr:red" 
               @click="goToListCaisse"
-              class="button-group"
-              >Retour</v-btn
+              ><span>Retour</span><i></i></button
             >
-            <v-btn v-else color="red" @click="resetForm" class="button-group"
-              >Annuler</v-btn
+            <button v-else style="--clr:red"  @click="resetForm" class="button-group"
+              ><span>Annuler</span><i></i></button
             >
           </form>
         </v-sheet>
@@ -183,19 +183,108 @@ export default {
 </script>
 
 <style scoped>
-.button-group1 {
+  button {
+    border-radius: 12px;
+  position: relative;
+  background: #494949;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  transition: 0.2s;
   align-content: center;
   justify-content: flex-end;
   margin-top: 20px;
-}
-.button-group {
-  align-content: center;
-  justify-content: flex-end;
-  margin-top: 20px;
-  margin-left: 80px;
+  margin-left: 160px;
 }
 
-.v-input__control--outlined.error--text {
-  border-color: red;
+button:hover {
+  letter-spacing: 0.2rem;
+  padding: 1.1rem 3.1rem;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #484646;
+  border-radius: 12px;
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
+button i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+button i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
 }
 </style>
