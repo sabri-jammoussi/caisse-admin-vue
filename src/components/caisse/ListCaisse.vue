@@ -54,7 +54,7 @@
         </tr>
       </tbody>
     </v-table>
-
+      
     <v-pagination
       v-model="currentPage"
       :length="totalPages"
@@ -92,7 +92,9 @@ export default {
     };
   },
   mounted() {
-    this.getCaisses();
+    setTimeout(() => {
+      this.getCaisses();
+    }, 1000);
   },
   computed: {
     totalPages() {
