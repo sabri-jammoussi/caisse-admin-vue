@@ -1,10 +1,23 @@
 <template>
   <div>
     <router-link to="/AjouterCaisse">
-      <v-btn>Ajouter Caisse</v-btn>
+      <v-btn class="ajoutbtn"><Icon  icon="material-symbols:add" width="25px" color="green"/>
+      <v-tooltip activator="parent" 
+                  >Ajouter Caisse
+      
+    </v-tooltip>
+  </v-btn>
     </router-link>
-    <v-table class="bordered">
-      <thead>
+
+    <v-table class="bordered" >
+      
+    
+      <thead >
+        <tr>
+          <center>
+            <legend>List Caisse </legend>
+          </center> 
+      </tr>
         <tr>
           <th class="text-left">Code</th>
           <th class="text-left">Intitule</th>
@@ -21,22 +34,23 @@
           <td>{{ item.Souches }}</td>
           <td>
             <router-link :to="`/EditCaisse/${item.id}`">
-              <v-btn icon v-bind="props" v-on="on">
+              <v-btn icon style="margin-right: 20px;" v-bind="props" v-on="on">
                 <v-tooltip activator="parent" location="end"
                   >Consulter</v-tooltip
                 >
                 <v-icon
-                  class="text-subtitle-1"
+                  
                   color="blue"
                   @click.stop="editCaisse(item.id)"
-                  style="margin-right: 12px"
+                  style="margin: auto  "
+                  
                   >mdi-magnify</v-icon
                 >
               </v-btn>
             </router-link>
-            <v-btn icon v-bind="props"  v-on="on" @click.stop="deleteCaisse(item.id)">
+            <v-btn icon @click.stop="deleteCaisse(item.id)">
               <v-tooltip activator="parent" location="end">Supprimer</v-tooltip>
-              <v-icon class="text-subtitle-1" color="red">mdi-delete</v-icon>
+              <v-icon  color="red" style="margin: auto ">mdi-delete</v-icon>
             </v-btn>
           </td>
         </tr>
@@ -79,7 +93,7 @@
 
 <script>
 import axios from "axios";
-
+import { Icon } from '@iconify/vue';
 export default {
   name: "caisses",
   data() {
@@ -94,8 +108,12 @@ export default {
   mounted() {
     setTimeout(() => {
       this.getCaisses();
+    
     }, 1000);
   },
+  components: {
+		Icon,
+	},
   computed: {
     totalPages() {
       return Math.ceil(this.caisses.length / this.itemsPerPage);
@@ -136,6 +154,7 @@ export default {
         })
         .finally(() => {
           this.deleteDialog = false;
+          location.reload();
         });
     },
     changePage(page) {
@@ -147,10 +166,18 @@ export default {
 
 <style scoped>
 .bordered {
+  padding: 12px;
   border-collapse: collapse;
   border: 1px solid #e0e0e0;
 }
+.ajoutbtn {
+  display: flex;
+  margin-right: 12px;
+    margin-left: auto;
+    width: 194px;
 
+
+  }
 .bordered th,
 .bordered td {
   border: 1px solid #e0e0e0;
