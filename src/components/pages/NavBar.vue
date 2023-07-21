@@ -35,15 +35,20 @@
             </v-tooltip>
           </v-list-item>
             <v-list v-if="showAdministrationMenu">
+             
               <router-link
                 v-for="item in items"
                 :key="item.text"
                 :to="item.route"
-              >
+              > 
+        
                 <v-list-item :prepend-icon="item.icon">
                   <span>{{ item.text }}</span>
+           
                 </v-list-item>
+                
               </router-link>
+      
             </v-list>
          
 		   <router-link to="/about" class="v-list-item__content">
