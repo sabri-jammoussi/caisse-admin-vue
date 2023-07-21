@@ -1,18 +1,11 @@
 {
   "caisses": [
     {
-      "Code": "a",
-      "Intitule": "z",
+      "Code": "AZERTY²",
+      "Intitule": "Caisse 1",
       "Depot": "magasin Tanyour",
       "Souches": "Sfax",
       "id": 1
-    },
-    {
-      "Code": "az",
-      "Intitule": "z",
-      "Depot": "magasin Tanyour",
-      "Souches": "Sfax",
-      "id": 2
     }
   ],
   "depots": [
@@ -33,6 +26,46 @@
     {
       "no": 2,
       "intitule": "Mestir"
+    }
+  ],
+  "utilisateurs": [
+    {
+      "nom": "Ben slima",
+      "prenom": "Miniar",
+      "surnom": "aaaaa",
+      "role": "Administrateur",
+      "email": "aaaaa",
+      "id": 1
+    },
+    {
+      "nom": "jammoussi",
+      "prenom": " a",
+      "surnom": "firas",
+      "role": "administrateur",
+      "email": "sabrijm123@gmail.com",
+      "id": 5
+    },
+    {
+      "nom": "jammoussi",
+      "prenom": "sabri",
+      "surnom": "firas",
+      "role": "administrateur",
+      "email": "sabrijm123@gmail.com",
+      "id": 6
+    }
+  ],
+  "roles": [
+    {
+      "no": 1,
+      "role": "Administrateur"
+    },
+    {
+      "no": 2,
+      "role": "Manager"
+    },
+    {
+      "no": 3,
+      "role": "Caissier"
     }
   ]
 }
