@@ -1,78 +1,182 @@
 <template>
-    <v-btn >Ajouter un Personnel</v-btn>
-  <v-row>
-    <v-col
-      v-for="(photo, index) in photos"
-      :key="index"
-      class="d-flex child-flex"
-      cols="3"
-    >
-
-      <v-img
-
-        :src="photo.url"
-        :lazy-src="photo.url"
-        aspect-ratio="1"
-       cover
-        
-        class=""
-      >
+  <div>
+    <router-link to="/ajouterpersonnel">
+      <v-btn class="ajoutbtn"><Icon  icon="material-symbols:add" width="25px" color="green"/>
+      <v-tooltip activator="parent" 
+                  >Ajouter Utilisateur
       
-        <template v-slot:placeholder>
-          <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="grey-lighten-5"
-            ></v-progress-circular>
-            
-          </v-row>
-        </template>
-     
-      </v-img>
-       
-    </v-col>
-    
-  </v-row>
-  
+    </v-tooltip>
+  </v-btn>
+    </router-link>
+    <v-table class="bordered">
+      <thead>
+        <tr>
+          <th class="text-left">Image</th>
+          <th class="text-left">Nom</th>
+          <th class="text-left">Prenom</th>
+          <th class="text-left">Role</th>
+          <th class="text-left">Surnom</th>
+          <th class="text-left">Email</th>
+
+          <th class="text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody v-if="paginatedUtilisateur.length > 0">
+        <tr v-for="(item, index) in paginatedUtilisateur" :key="index">
+          <td>{{ item.image }}</td>
+          <td>{{ item.nom }}</td>
+          <td>{{ item.prenom }}</td>
+          <td>{{ item.role }}</td>
+          <td>{{ item.surnom }}</td>
+          <td>{{ item.email }}</td>
+          <td>
+            <router-link :to="`/editpersonnel/${item.id}`">
+              <v-btn icon v-bind="props" v-on="on" style="margin-right: 20px;" >
+                <v-tooltip activator="parent" location="end">Consulter</v-tooltip>
+                <v-icon
+                  
+                  color="blue"
+                  @click.stop="editUtilisateur(item.id)"
+                  style="margin: auto "
+                >
+                  mdi-magnify
+                </v-icon>
+              </v-btn>
+            </router-link>
+            <v-btn icon v-bind="props" v-on="on" @click.stop="deleteUtilisateur(item.id)">
+              <v-tooltip activator="parent" location="end">Supprimer</v-tooltip>
+              <v-icon  color="red" style="margin: auto ">mdi-delete</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </tbody>
+      <!-- <tbody v-else-if="paginatedUtilisateur.length ===0">
+        <tr>
+          <td colspan="5" class="text-center">
+         pas de données
+          </td>
+        </tr>
+      </tbody> -->
+      <tbody v-else>
+        <tr>
+          <td colspan="7" class="text-center">
+            <v-progress-circular :size="30" color="primary" indeterminate></v-progress-circular>
+            Loading ...
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
+
+    <v-pagination v-model="currentPage" :length="totalPages" @input="changePage"></v-pagination>
+
+    <v-dialog v-model="deleteDialog" max-width="400">
+      <v-card>
+        <v-card-title>Delete Confirmation</v-card-title>
+        <v-card-text>
+          Voulez-vous vraiment supprimer cet utilisateur ?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="red" text @click="confirmDelete">Supprimer</v-btn>
+          <v-btn color="primary" text @click="deleteDialog = false">Annuler</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import { Icon } from '@iconify/vue';
 export default {
+  name: "utilisateurs",
   data() {
     return {
-      photos: [],
+      utilisateurs: [],
+      currentPage: 1,
+      itemsPerPage: 9,
+      deleteDialog: false,
+      utilisateurToDelete: null,
     };
   },
-  created() {
-    this.fetchPhotos();
+  mounted() {
+    setTimeout(() => {
+      this.getUtilisateurs();
+    }, 1000);
+  },
+  components: {
+		Icon,
+	},
+  computed: {
+    totalPages() {
+      return Math.ceil(this.utilisateurs.length / this.itemsPerPage);
+    },
+    paginatedUtilisateur() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.utilisateurs.slice(startIndex, endIndex);
+    },
   },
   methods: {
-    fetchPhotos() {
-      // Replace this with your logic to fetch the list of photos
-      // Example:
-      // Call an API or fetch photos from a database
-      // Assign the fetched photos to the 'photos' data property
-
-      // Sample code to assign dummy photo data
-      this.photos = [
-        { url: 'https://media.istockphoto.com/id/1171169099/fr/photo/homme-avec-les-bras-crois%C3%A9s-disolement-sur-le-fond-gris.jpg?s=612x612&w=0&k=20&c=csQeB3utGtrGeb3WmdSxRYXaJvUy_xqlhbOIZxclcGA=',name :'Caisse 1' },
-        { url: 'https://st.depositphotos.com/1269204/1219/i/600/depositphotos_12196477-stock-photo-smiling-men-isolated-on-the.jpg' ,name:'Caisse 2'},
-        { url: 'https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' ,name:'Caisse 3'},
-        // ... add more photo objects as needed
-      ];
+    getUtilisateurs() {
+      axios
+        .get("http://localhost:3000/utilisateurs")
+        .then((res) => {
+          this.utilisateurs = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    deleteUtilisateur(utilisateurId) {
+      this.utilisateurToDelete = utilisateurId;
+      this.deleteDialog = true;
+    },
+    confirmDelete() {
+      const utilisateurId = this.utilisateurToDelete;
+      axios
+        .delete(`http://localhost:3000/utilisateurs/${utilisateurId}`)
+        .then((res) => {
+          // Handle successful deletion if needed
+          console.log(res);
+          // Refresh the list of utilisateurs
+          this.getUtilisateurs();
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          this.deleteDialog = false;
+          location.reload();
+        });
+    },
+    changePage(page) {
+      this.currentPage = page;
     },
   },
 };
 </script>
+
 <style scoped>
-.photo-name {
+.bordered {
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+}
+
+.bordered th,
+.bordered td {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+}
+.ajoutbtn {
+  display: flex;
+  margin-right: 12px;
+    margin-left: auto;
+    width: 194px;
+
+
+  }
+.text-center {
   text-align: center;
-  color: #171616;
-  font-weight: bold;
-  margin-top: 308px;
 }
 </style>
