@@ -13,7 +13,8 @@
               v-model="model.caisse.Intitule"
               :readonly="!editMode"
               :error-messages="
-                v$?.caisse?.Intitule?.$errors?.map((e) => e.$message)"
+                v$?.caisse?.Intitule?.$errors?.map((e) => e.$message)
+              "
               @blur="v$?.caisse?.Intitule?.$touch"
               @input="v$?.caisse?.Intitule?.$touch"
               label="Intitule"
@@ -37,21 +38,30 @@
               @click="enableEditMode"
               color="primary"
               class="button-group1"
-              style="--clr:blue"
-              ><span>Modifier</span><i></i></button
+              style="--clr: blue"
             >
-            <button v-else type="submit" style="--clr:#39FF14" class="button-group1"
-              ><span>Submit</span><i></i></button
-            >
+              <span>Modifier</span><i></i>
+            </button>
             <button
-              v-if="!editMode"
-              style="--clr:red" 
-              @click="goToListCaisse"
-              ><span>Retour</span><i></i></button
+              v-else
+              type="submit"
+              style="--clr: #39ff14"
+              class="button-group1"
             >
-            <button v-else style="--clr:red"  @click="resetForm" class="button-group"
-              ><span>Annuler</span><i></i></button
+              <span>Submit</span><i></i>
+            </button>
+            <button v-if="!editMode" style="--clr: red" @click="goToListCaisse">
+              <span>Retour</span><i></i>
+            </button>
+            <button
+              v-else
+              style="--clr: red"
+              @click="resetForm"
+              class="button-group"
             >
+              <span>Annuler</span><i></i>
+            </button>
+            
           </form>
         </v-sheet>
       </v-card>
@@ -143,7 +153,10 @@ export default {
       try {
         v$?.value.$touch();
         if (v$?.value.$invalid) return;
-        await axios.put(`http://localhost:3000/caisses/${caisseId}`, model.value.caisse );
+        await axios.put(
+          `http://localhost:3000/caisses/${caisseId}`,
+          model.value.caisse
+        );
 
         router.push({ name: "ListCaisse" });
       } catch (error) {
@@ -156,8 +169,11 @@ export default {
     }
 
     function resetForm() {
-      model.value.caisse = { ...caisseOrigin.value };
-    }
+      editMode.value = false;
+  model.value.caisse = { ...caisseOrigin.value };
+ 
+}
+
 
     onMounted(async () => {
       const caisseId = router.currentRoute.value.params.id;
@@ -183,10 +199,10 @@ export default {
 </script>
 
 <style scoped>
-  button {
-    border-radius: 12px;
+button {
+  border-radius: 12px;
   position: relative;
-  background: #494949;
+  background: #9FAFA1;
   color: #ffffff;
   text-decoration: none;
   text-transform: uppercase;
