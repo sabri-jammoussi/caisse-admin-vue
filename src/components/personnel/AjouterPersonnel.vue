@@ -19,7 +19,7 @@
               @input="v$.prenom.$touch"
             ></v-text-field>
             <v-text-field
-              v-model="userEmail"
+              v-model="email"
               label="Email"
               :error-messages="v$?.email?.$errors?.map((e) => e.$message)"
               @blur="v$.email.touch"
@@ -68,7 +68,7 @@ import axios from "axios";
 import router from "@/router/index";
 import { ref, onMounted } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers, email } from "@vuelidate/validators";
+import { required, helpers } from "@vuelidate/validators";
 const { withMessage, withAsync } = helpers;
 export default {
   name: "ADDUtilisateur",
@@ -77,7 +77,7 @@ export default {
     const surnom = ref("");
     const nom = ref("");
     const prenom = ref("");
-    const userEmail = ref("");
+    const email = ref("");
     const roleOptions = ref([]);
 
     const SurnomIsUnique = async () => {
@@ -86,11 +86,11 @@ export default {
           `http://localhost:3000/utilisateurs?surnom=${surnom.value}`
         );
 
-        const existingUtilisateur = response.data.find(
+        const existingNom = response.data.find(
           (utilisateur) => utilisateur.surnom === surnom.value
         );
-
-        if (existingUtilisateur) return false;
+        console.log(existingNom)
+        if (existingNom) return false;
         else return true;
         /*    var result = existingCaisse ? false : true;
         console.log("********************role unique22222",result)
@@ -100,6 +100,28 @@ export default {
         return false;
       }
     };
+    const EmailIsUnique = async () => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/utilisateurs?email=${email.value}`
+    );
+
+    const existingEmail = response.data.find(
+      (utilisateur) => utilisateur.email === email.value
+      
+    );
+    
+    
+    console.log(existingEmail)
+    return !existingEmail; 
+    
+    // Return false if email is not unique, true otherwise
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 
     const rules = {
       role: {
@@ -115,6 +137,7 @@ export default {
       },
       email: {
         required: withMessage("email obligatoire ", required),
+        custom : withMessage("email must be unique ",withAsync(EmailIsUnique)),
       },
     };
 
@@ -140,7 +163,7 @@ export default {
           surnom: surnom.value,
           nom: nom.value,
           prenom: prenom.value,
-          email: userEmail.value,
+          email: email.value,
         });
 
         // Reset the form
@@ -148,7 +171,7 @@ export default {
         surnom.value = "";
         nom.value = "";
         prenom.value = "";
-        userEmail.value = "";
+        email.value = "";
         router.push({ name: "ListPersonnel" });
       } catch (error) {
         console.error(error);
@@ -166,7 +189,7 @@ export default {
       surnom,
       nom,
       prenom,
-      userEmail,
+      email,
       v$,
       addUtilisateur,
       roleOptions,
