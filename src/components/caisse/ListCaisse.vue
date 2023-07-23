@@ -10,14 +10,12 @@
     </router-link>
 
     <v-table class="bordered" >
+      <caption class="center-text">List Caisse</caption>
       
     
       <thead >
-        <tr>
-          <center>
-            <legend>List Caisse </legend>
-          </center> 
-      </tr>
+  
+     
         <tr>
           <th class="text-left">Code</th>
           <th class="text-left">Intitule</th>
@@ -178,13 +176,17 @@ export default {
 
 
   }
+
 .bordered th,
 .bordered td {
   border: 1px solid #e0e0e0;
   padding: 8px;
 }
-
-.text-center {
-  text-align: center;
+caption {
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  color:#005E7E;
 }
+
 </style>

@@ -9,6 +9,7 @@
   </v-btn>
     </router-link>
     <v-table class="bordered">
+      <caption>List Utilisateur</caption>
       <thead>
         <tr>
           <th class="text-left">Image</th>
@@ -176,6 +177,12 @@ export default {
 
 
   }
+  caption {
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  color:#005E7E;
+}
 .text-center {
   text-align: center;
 }
