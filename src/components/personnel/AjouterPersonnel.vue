@@ -137,7 +137,7 @@ export default {
       },
       email: {
         required: withMessage("email obligatoire ", required),
-        custom : withMessage("email must be unique ",withAsync(EmailIsUnique)),
+        custom : withMessage("Email existe déja",withAsync(EmailIsUnique)),
       },
     };
 
