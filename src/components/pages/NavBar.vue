@@ -77,14 +77,23 @@
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-toolbar-title>Application</v-toolbar-title>
-        <router-link to="/">
-          <v-btn icon>
-            <v-icon>mdi-cart</v-icon>
-          </v-btn>
-        </router-link>
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
+          <!-- <router-link to="/">
+            <v-btn icon>
+              <v-icon>mdi-cart</v-icon>
+            </v-btn>
+          </router-link> -->
+          
+          <router-link v-if=" ! showLoginButton" to="/login">
+    <v-btn icon @click="handleConnexionButtonClick">
+      <v-tooltip activator="parent" location="end">Connexion</v-tooltip>
+      <Icon icon="codicon:sign-in" width="23px" />
+    </v-btn>
+  </router-link>
+
+  <v-btn icon v-if=" ! showLogoutButton">
+    <v-tooltip activator="parent" location="end">Déconnexion</v-tooltip>
+    <Icon icon="material-symbols:logout" width="23px" @click="handleDeconnexionButtonClick" />
+  </v-btn>
 
       </v-toolbar>
     </v-app-bar>
@@ -97,9 +106,25 @@
 
 <script setup>
 import { ref } from "vue";
+import { Icon } from '@iconify/vue';
 
 const drawer = ref(null);
+const showLoginButton = ref(false);
+const showLogoutButton = ref(false);
+const handleConnexionButtonClick = () => {
+  // Add your logic here for handling the login functionality
+  // For now, we'll just update the button visibility
+  showLoginButton.value = true;
+  showLogoutButton.value = false ;
+};
 
+// Handler for the Déconnexion button click
+const handleDeconnexionButtonClick = () => {
+  // Add your logic here for handling the logout functionality
+  // For now, we'll just update the button visibility
+  showLoginButton.value = false;
+  showLogoutButton.value = true;
+};
 const items = [
   { icon: "mdi-account-circle ", text: "Personnel", route: "/listpersonnel" },
   { icon: "mdi-cash-register ", text: "Caisse", route: "/listcaisse" },
@@ -112,4 +137,5 @@ const showAdministrationMenu = ref(false);
 const navigateToPage = (route) => {
   useRouter().push(route);
 };
+
 </script>
