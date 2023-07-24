@@ -7,6 +7,8 @@ import Editcaisse from '../components/caisse/EditCaisses.vue'
 import Ajouterpersonnel from '../components/personnel/Ajouterpersonnel.vue'
 import Listpersonnel from '../components/personnel/ListPersonnel.vue'
 import Editpersonnel from '@/components/personnel/EditPersonnel.vue'
+import login from '@/components/register/login.vue'
+import signup from '@/components/register/sign_up.vue'
 import NotFound from   '../components/NotFound.vue'
 import { RouterLink } from 'vue-router';
 
@@ -51,6 +53,16 @@ const routes =[
         path : '/editpersonnel/:id',
         name:"EditPersonnel",
         component : Editpersonnel
+    },
+    {
+        path : '/login',
+        name:"login",
+        component : login
+    },
+    {
+        path : '/signup',
+        name:"signup",
+        component : signup
     },
     {
         path: '/:pathMatch(.*)*',
