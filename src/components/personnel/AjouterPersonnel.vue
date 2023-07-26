@@ -42,7 +42,9 @@
               @input="v$.role.$touch"
             ></v-select>
             <v-file-input
-              label="File input"
+              v-model="photo"
+              label="Photo"
+              @change="onPhotoChange"
               variant="filled"
               prepend-icon="mdi-camera"
             ></v-file-input>
@@ -79,7 +81,7 @@ export default {
     const prenom = ref("");
     const email = ref("");
     const roleOptions = ref([]);
-
+     const photo = ref(null);
     const SurnomIsUnique = async () => {
       try {
         const response = await axios.get(
@@ -89,7 +91,7 @@ export default {
         const existingNom = response.data.find(
           (utilisateur) => utilisateur.surnom === surnom.value
         );
-        console.log(existingNom)
+        console.log(existingNom);
         if (existingNom) return false;
         else return true;
         /*    var result = existingCaisse ? false : true;
@@ -101,27 +103,24 @@ export default {
       }
     };
     const EmailIsUnique = async () => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/utilisateurs?email=${email.value}`
-    );
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/utilisateurs?email=${email.value}`
+        );
 
-    const existingEmail = response.data.find(
-      (utilisateur) => utilisateur.email === email.value
-      
-    );
-    
-    
-    console.log(existingEmail)
-    return !existingEmail; 
-    
-    // Return false if email is not unique, true otherwise
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
+        const existingEmail = response.data.find(
+          (utilisateur) => utilisateur.email === email.value
+        );
 
+        console.log(existingEmail);
+        return !existingEmail;
+
+        // Return false if email is not unique, true otherwise
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    };
 
     const rules = {
       role: {
@@ -137,7 +136,7 @@ export default {
       },
       email: {
         required: withMessage("email obligatoire ", required),
-        custom : withMessage("Email existe déja",withAsync(EmailIsUnique)),
+        custom: withMessage("Email existe déja", withAsync(EmailIsUnique)),
       },
     };
 
