@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="8" md="6">
-        <v-card>
+        <v-card class="login-card">
           <v-card-title>
             <h2 class="text-center">Register</h2>
           </v-card-title>
@@ -15,7 +15,7 @@
                     :error-messages="
                       v$.firstName.$errors.map((e) => e.$message)
                     "
-                    label="First Name"
+                    label="Prénom"
                     maxlength="20"
                     @blur="v$.firstName.touch"
                     @input="v$.firstName.$touch"
@@ -25,7 +25,7 @@
                   <v-text-field
                     v-model="lastName"
                     :error-messages="v$.lastName.$errors.map((e) => e.$message)"
-                    label="Last Name"
+                    label="Nom de famille"
                     maxlength="20"
                     @blur="v$.lastName.touch"
                     @input="v$.lastName.$touch"
@@ -158,7 +158,7 @@ export default {
       },
       verify: {
         required: withMessage("Confirm Password obligatoire", required),
-        verify: withMessage("Password must match ", sameAs(password)),
+        verify: withMessage("le mot de passe doit correspondre ", sameAs(password)),
       },
     };
 
@@ -222,6 +222,17 @@ export default {
 .success:hover {
   background: #27ae60;
   color: #ffffff;
+}
+.login-card {
+  /* background-image: url("@/assests/images/bg.jpg"); */
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 17px #333;
+            border-radius: 12px;
+  backdrop-filter: blur(5px); /* Apply a blur effect for transparency */
 }
 </style>
   
