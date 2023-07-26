@@ -44,52 +44,74 @@
   </v-container>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import router from "@/router/index";
+import router from '@/router/index';
+import { useUserStore } from '@/store/store.js';
 
-const valid = ref(true);
-const loginEmail = ref('');
-const loginPassword = ref('');
-const show1 = ref(false);
-const errorText = ref('');
+export default {
+  setup() {
+    const valid = ref(true);
+    const loginEmail = ref('');
+    const loginPassword = ref('');
+    const show1 = ref(false);
+    const errorText = ref('');
+    const useremail = useUserStore();
+    const emailuser=ref();
+    const rules = {
+      required: (value) => !!value || 'Password obligatoire.',
+      min: (v) => (v && v.length >= 8) || 'Min 8 caractères'
+    };
 
-const rules = {
-  required: (value) => !!value || 'Password obligatoire.',
-  min: (v) => (v && v.length >= 8) || 'Min 8 caractères'
-};
+    const loginEmailRules = [
+      (v) => !!v || 'E-mail obligatoire',
+      (v) => /.+@.+\..+/.test(v) || 'E-mail doit avoir @ et .Domain '
+    ];
 
-const loginEmailRules = [
-  (v) => !!v || 'E-mail obligatoire',
-  (v) => /.+@.+\..+/.test(v) || 'E-mail doit avoir @'
-];
+    const validate = async () => {
+      try {
 
-const validate = async () => {
-  try {
-    // Make a GET request to your backend API with the provided email
-    const response = await axios.get(`http://localhost:3000/authentification?email=${loginEmail.value}`);
-    // Assuming the response data contains an array of users with the provided email
-    const usersWithEmail = response.data;
+        const response = await axios.get(`http://localhost:3000/authentification?email=${loginEmail.value}`);
 
-    // Check if the array is not empty, which means the email exists in the database
-    if (usersWithEmail.length > 0) {
-      // Check if the password provided matches the password of the user
-      const user = usersWithEmail[0]; 
-      if (user.password === loginPassword.value) {
-        router.push({ name: 'Home' });
-      } else {
-        // Handle invalid login credentials here (e.g., show error message)
-        errorText.value = 'Invalid credentials. Please check your email and password.';
+        const usersWithEmail = response.data;
+        // console.log("dddddddd",usersWithEmail)
+        if (usersWithEmail.length > 0) {
+          const user = usersWithEmail[0];
+          if (user.password === loginPassword.value) {
+            router.push({ name: 'Home' });
+          } else {
+            errorText.value = 'Invalid credentials. Please check your email and password.';
+          }
+        } else {
+          errorText.value = 'Invalid credentials. Please check your email and password.';
+        }
+      } catch (error) {
+        console.error('Error during API request:', error);
       }
-    } else {
-      // Handle invalid login credentials here (e.g., show error message)
-      errorText.value = 'Invalid credentials. Please check your email and password.';
-    }
-  } catch (error) {
-    // Handle API request errors here
-    console.error('Error during API request:', error);
-  }
+    };
+
+
+    // Use onMounted hook to call validate function when the component is mounted
+    onMounted(async () => {
+
+      const emailuser=  loginEmail.value;
+      useremail.setEmail(emailuser);
+     
+
+    });
+
+    // Return the variables and functions that need to be used in the template
+    return {
+      valid,
+      loginEmail,
+      loginPassword,
+      show1,
+      errorText,
+      rules,
+      loginEmailRules,validate
+    };
+  },
 };
 </script>
 
