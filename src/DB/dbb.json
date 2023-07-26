@@ -30,28 +30,52 @@
   ],
   "utilisateurs": [
     {
-      "nom": "Ben slima",
-      "prenom": "Miniar",
-      "surnom": "aaaaa",
       "role": "Administrateur",
-      "email": "aaaaa",
-      "id": 1
+      "surnom": "azezea",
+      "nom": "az",
+      "prenom": "zae",
+      "email": "sabrijm123@gmail.com",
+      "id": 11
     },
     {
-      "nom": "jammoussi",
-      "prenom": " a",
-      "surnom": "firas",
-      "role": "administrateur",
+      "role": "Administrateur",
+      "surnom": "aszzae",
+      "nom": "az",
+      "prenom": "zea",
       "email": "sabrijm123@gmail.com",
-      "id": 5
+      "id": 12
     },
     {
-      "nom": "jammoussi",
-      "prenom": "sabri",
-      "surnom": "firas",
-      "role": "administrateur",
+      "role": "Administrateur",
+      "surnom": "zaea",
+      "nom": "aze",
+      "prenom": "aze",
       "email": "sabrijm123@gmail.com",
-      "id": 6
+      "id": 13
+    },
+    {
+      "role": "Administrateur",
+      "surnom": "aze",
+      "nom": "eza",
+      "prenom": "zae",
+      "email": "sabrijm123@gmail.com",
+      "id": 14
+    },
+    {
+      "role": "Administrateur",
+      "surnom": "zaez",
+      "nom": "aez",
+      "prenom": "aze",
+      "email": "sabrijm123@gmail.com",
+      "id": 15
+    },
+    {
+      "role": "Administrateur",
+      "surnom": "z",
+      "nom": "z",
+      "prenom": "z",
+      "email": "a",
+      "id": 16
     }
   ],
   "roles": [
@@ -66,6 +90,29 @@
     {
       "no": 3,
       "role": "Caissier"
+    }
+  ],
+  "authentification": [
+    {
+      "firstName": "sabri",
+      "lastName": "jammoussi",
+      "email": "sabrijm123@gmail.com",
+      "password": "sabri123",
+      "confirmPassword": "sabri123",
+      "id": 1
+    },
+    {
+      "firstName": "firas",
+      "lastName": "jammoussi",
+      "email": "firas@gmail.com",
+      "password": "aaaaaaaa",
+      "confirmPassword": "aaaaaaaa",
+      "id": 2
+    }
+  ],
+  "user": [
+    {
+      "Name": "sabri"
     }
   ]
 }
