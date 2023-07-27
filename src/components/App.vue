@@ -1,27 +1,49 @@
-<script setup>
-
-
-</script>
 <template>
-    <div id="app">
-      <!-- The regular router-view for the Navbar -->
-      <router-view/>
+    <div v-if="isLoading" class="progress_circular">
+      <v-progress-circular :size="60" color="success" indeterminate></v-progress-circular>
+    </div>
   
-      <!-- Login (outside navbar) -->
-      <router-view name="login"></router-view>
-  
-      <!-- Sign Up (outside navbar) -->
-      <router-view name="signup"></router-view>
+    <div id="app" v-else>
+      <div class="backgroung_image">
+        <router-view name="login"></router-view>
+
+        <router-view name="signup"></router-view>
+      </div>
+
+      <router-view />
+
     </div>
   </template>
+  
+  <script>
+  import { ref, onMounted } from "vue";
+  
+  export default {
+    setup() {
+      const isLoading = ref(true); 
+  
+
+      onMounted(async   () => {
+       await setTimeout(() => {
+          isLoading.value = false; 
+        }, 2000);
+      });
+  
+      return {
+        isLoading,
+      };
+    },
+  };
+  </script>
+  
   <style>
-  /* Global styles for the whole application */
+
   html, body, #app {
     height: 100%;
   }
   
-  body {
-    background-image: url("@/assests/images/bg.jpg");
+  .backgroung_image {
+    background-image: url("@/assests/images/a2.jpg");
     background-size: cover;
     background-position: center;
   }
@@ -31,6 +53,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  
+  .progress_circular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
   </style>
   
