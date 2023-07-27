@@ -6,8 +6,9 @@
     <div id="app" v-else>
       <div class="backgroung_image">
         <router-view name="login"></router-view>
-
+       
         <router-view name="signup"></router-view>
+        <router-view name="editprofile"></router-view>
       </div>
 
       <router-view />
