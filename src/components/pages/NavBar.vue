@@ -1,8 +1,9 @@
 <template>
   <v-app id="inspire">
+    <div >
     <v-navigation-drawer v-model="drawer" >
       <v-layout>
-        <v-navigation-drawer floating permanent>
+       
           <v-list density="compact" nav>
             <router-link to="/" class="v-list-item__content">
             <v-list-item
@@ -63,11 +64,12 @@
 		   </router-link>
        
       </v-list>
-        </v-navigation-drawer>
-        <v-main style="height: 400px"></v-main>
+        <!-- </v-navigation-drawer> -->
+        <v-main style="height: 200px"></v-main>
       </v-layout>
     </v-navigation-drawer>
-
+  </div>
+<div>
     <v-app-bar >
       <v-toolbar 
       color="rgb(41, 40, 44)"
@@ -97,16 +99,18 @@
   </router-link>
       </v-toolbar>
     </v-app-bar>
-
+  </div>
     <v-main>
       <router-view />
      
 
 
-  
-
+      
       
     </v-main>
+    <v-footer color="rgb(70, 70,70)" app>
+      <span style="color: white;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
+    </v-footer>
   </v-app>
 </template>
 
