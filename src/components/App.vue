@@ -43,7 +43,9 @@
   }
   
   .backgroung_image {
-    background-image: url("@/assests/images/a2.jpg");
+    /* background-image: url("@/assests/images/a2.jpg");
+     */
+     background-color: rgb(219, 231, 231);
     background-size: cover;
     background-position: center;
   }
