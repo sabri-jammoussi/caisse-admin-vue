@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center" class="mt-10">
-      <v-col cols="12" sm="8" md="6">
+      <v-col cols="12" sm="8" md="4">
         <v-card class="login-card">
           <v-card-title>
             <h2 class="text-center">Connexion</h2>
@@ -132,7 +132,7 @@ onMounted(async () => {
 
 /* Center the content vertically */
 .v-container .v-row.justify-center {
-  min-height: 100vh;
+  min-height: 91.6vh;
   display: flex;
   align-items: center;
 }
