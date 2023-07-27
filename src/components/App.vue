@@ -13,6 +13,7 @@
       <router-view />
 
     </div>
+
   </template>
   
   <script>
@@ -43,9 +44,8 @@
   }
   
   .backgroung_image {
-    /* background-image: url("@/assests/images/a2.jpg");
-     */
-     background-color: rgb(219, 231, 231);
+    background-image: url("@/assests/images/a5.jpg");
+         /* background-color: rgb(219, 231, 231); */
     background-size: cover;
     background-position: center;
   }
