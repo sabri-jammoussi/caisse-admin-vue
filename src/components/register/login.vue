@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center" class="mt-10">
-      <v-col cols="12" sm="8" md="4">
+      <v-col cols="12" sm="8" md="3">
         <v-card class="login-card">
           <v-card-title>
             <h2 class="text-center">Connexion</h2>
@@ -32,8 +32,8 @@
                     <p class="text-body-2">Vous n'avez pas de compte ? <a href="/signup" class="register">Register</a></p>
                   </div>
                 </v-col>
-                <v-col cols="12" class="d-flex justify-end">
-                  <v-btn :disabled="!valid" color="success" type="submit">Connexion</v-btn>
+                <v-col class="d-flex justify-end">
+                  <v-btn :disabled="!valid" class="success" type="submit">Connexion</v-btn>
                 </v-col>
                
               </v-row>
@@ -101,11 +101,13 @@ onMounted(async () => {
 .success {
   background: #2ecc71;
   color: #ffffff;
+  width: 500px;
 }
 
 .success:hover {
   background: #27ae60;
   color: #ffffff;
+
 }
 
 .error-message {

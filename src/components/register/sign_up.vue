@@ -217,6 +217,7 @@ export default {
 .success {
   background: #2ecc71;
   color: #ffffff;
+  width: 500px;
 }
 
 .success:hover {
