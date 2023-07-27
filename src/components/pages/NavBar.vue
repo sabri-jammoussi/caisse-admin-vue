@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <div >
-    <v-navigation-drawer v-model="drawer" >
+    <v-navigation-drawer v-model="drawer"  >
       <v-layout>
        
           <v-list density="compact" nav>
@@ -91,12 +91,58 @@
       <Icon icon="codicon:sign-in" width="23px" />
     </v-btn>
   </router-link> -->
-  <router-link  to="/login">
-  <v-btn icon style="color:white;">
-    <v-tooltip activator="parent" location="end" >Déconnexion</v-tooltip>
-    <Icon icon="material-symbols:logout" width="23px"  />
-  </v-btn>
-  </router-link>
+  
+    <v-row class="d-flex justify-end mr-2">
+      <v-menu
+        min-width="200px"
+        rounded
+      >
+        <template v-slot:activator="{ props }">
+          <v-btn
+            icon
+            v-bind="props"
+          >
+            <v-avatar
+              color="brown"
+              size="large"
+            >
+              <span class="text-h5">!</span>
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-text>
+            <div class="mx-auto text-center">
+              <v-avatar
+                color="brown"
+              >
+                <span class="text-h5">v</span>
+              </v-avatar>
+              <h3>name</h3>
+              <p class="text-caption mt-1">
+                email
+              </p>
+              <v-divider class="my-3"></v-divider>
+              <v-btn
+                rounded
+                variant="text"
+              >
+                Edit Account
+              </v-btn>
+              <v-divider class="my-3"></v-divider>
+          <router-link  to="/login">
+            <v-btn
+                rounded
+                variant="text"
+              >
+                Disconnect
+              </v-btn>
+          </router-link>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-menu>
+    </v-row>
       </v-toolbar>
     </v-app-bar>
   </div>
@@ -109,6 +155,8 @@
       
     </v-main>
     <v-footer color="rgb(70, 70,70)" app>
+     
+
       <span style="color: white;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
     </v-footer>
   </v-app>
@@ -117,6 +165,7 @@
 <script setup>
 import { ref } from "vue";
 import { Icon } from '@iconify/vue';
+
 
 
 
