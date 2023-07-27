@@ -41,13 +41,13 @@
               @blur="v$.role.touch"
               @input="v$.role.$touch"
             ></v-select>
-            <v-file-input
+            <!-- <v-file-input
               v-model="photo"
               label="Photo"
               @change="onPhotoChange"
               variant="filled"
               prepend-icon="mdi-camera"
-            ></v-file-input>
+            ></v-file-input> -->
 
             <button style="--clr: #39ff14" type="submit" class="button-85">
               <span>Ajouter</span><i></i>
