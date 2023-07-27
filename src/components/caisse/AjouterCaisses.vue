@@ -2,7 +2,7 @@
   <v-container>
     
     <v-row justify="space-around">
-      <v-card width="1000"   title="Ajouter Caisse">
+      <v-card width="1000" height="450"   title="Ajouter Caisse">
         <v-sheet width="900"   class="mx-auto">
           <form @submit.prevent="addCaisse">
             <v-text-field
@@ -33,11 +33,12 @@
               @blur="v$.souche.touch"
               @input="v$.souche.$touch"
             ></v-select>
-            <button style="--clr:#39FF14" type="submit" class="button-85"><span>Ajouter</span><i></i></button >
-
-            <router-link to="/ListCaisse">
-              <button style="--clr:red" type="submit" class="button-85"><span>Annuler</span><i></i></button >
-            </router-link>
+            <v-row justify="flex-end"     class="button-group">
+              <v-btn type="submit" class="button-85 green-btn">Ajouter</v-btn>
+              <router-link to="/ListCaisse">
+                <v-btn type="submit" class="button-85 red-btn">Annuler</v-btn>
+              </router-link>
+            </v-row >
           </form>
         </v-sheet>
       </v-card>
@@ -164,115 +165,31 @@ export default {
 </script>
 <style scoped>
 .button-group {
-  align-content: center;
-  justify-content: flex-end;
   margin-top: 20px;
-  margin-left: 80px;
+  justify-content: flex-end;
+  
 }
-
-  button {
-    border-radius: 12px;
-  position: relative;
-  background: #444;
+.green-btn {
+  background: #36b120;
   color: #ffffff;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: none;
-  letter-spacing: 0.1rem;
-  font-size: 1rem;
-  padding: 1rem 3rem;
-  transition: 0.2s;
-  align-content: center;
-  justify-content: flex-end;
-  margin-top: 20px;
-  margin-left: 160px;
+
 }
 
-button:hover {
-  letter-spacing: 0.2rem;
-  padding: 1.1rem 3.1rem;
-  background: var(--clr);
-  color: var(--clr);
-  /* box-shadow: 0 0 35px var(--clr); */
-  animation: box 3s infinite;
+.red-btn {
+  background: red;
+  color: #ffffff;
+  margin-left: 20px;  
 }
 
-button::before {
-  content: "";
-  position: absolute;
-  inset: 2px;
-  background: #484646;
-  border-radius: 12px;
+/* Add hover styles for the buttons */
+.green-btn:hover {
+  background: #258e0d;
+  color: #ffffff;
 }
 
-button span {
-  position: relative;
-  z-index: 1;
-}
-button i {
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
-button i::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 2px;
-  left: 80%;
-  top: -2px;
-  border: 2px solid var(--clr);
-  background: #272822;
-  transition: 0.2s;
-}
-
-button:hover i::before {
-  width: 15px;
-  left: 20%;
-  animation: move 3s infinite;
-}
-
-button i::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 2px;
-  left: 20%;
-  bottom: -2px;
-  border: 2px solid var(--clr);
-  background: #272822;
-  transition: 0.2s;
-}
-
-button:hover i::after {
-  width: 15px;
-  left: 80%;
-  animation: move 3s infinite;
-}
-
-@keyframes move {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes box {
-  0% {
-    box-shadow: #27272c;
-  }
-  50% {
-    box-shadow: 0 0 25px var(--clr);
-  }
-  100% {
-    box-shadow: #27272c;
-  }
+.red-btn:hover {
+  background: #b31010;
+  color: #ffffff;
 }
 
 </style>
