@@ -10,6 +10,7 @@ import Listpersonnel from "@/components/personnel/ListPersonnel.vue";
 import Editpersonnel from "@/components/personnel/EditPersonnel.vue";
 import login from "@/components/register/login.vue";
 import signup from "@/components/register/sign_up.vue";
+import editprofile from '@/components/profile/EditProfile.vue'
 import app from '@/components/App.vue'
 import NotFound from "@/components/NotFound.vue";
 
@@ -58,6 +59,7 @@ const routes = [
         name: "EditPersonnel",
         component: Editpersonnel,
       },
+      
     ],
   },
   {
@@ -76,6 +78,14 @@ const routes = [
       signup: signup,
     },
   },
+  {
+        path: "/editprofile",
+        name: "editprofile",
+        components: {
+          default: app,
+          editprofile: editprofile,
+        },
+      },
   {
     path: "/:pathMatch(.*)*",
     component: NotFound,
