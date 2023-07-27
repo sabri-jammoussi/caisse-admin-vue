@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer">
+    <v-navigation-drawer v-model="drawer" >
       <v-layout>
         <v-navigation-drawer floating permanent>
           <v-list density="compact" nav>
@@ -68,45 +68,44 @@
       </v-layout>
     </v-navigation-drawer>
 
-    <v-app-bar>
-      <v-toolbar
-        dark
-        prominent
-        image="https://images.vexels.com/content/221369/preview/sky-at-night-background-design-a1471a.png"
+    <v-app-bar >
+      <v-toolbar 
+      color="rgb(44, 44, 44)"
+        dark prominent
+  
       >
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="drawer = !drawer" style="color:white;"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>Application</v-toolbar-title>
+        <v-toolbar-title style="color:white;">Application</v-toolbar-title>
           <!-- <router-link to="/">
             <v-btn icon>
               <v-icon>mdi-cart</v-icon>
             </v-btn>
           </router-link> -->
           
-          <router-link v-if=" ! showLoginButton" to="/login">
+          <!-- <router-link v-if=" ! showLoginButton" to="/login">
     <v-btn icon @click="handleConnexionButtonClick">
       <v-tooltip activator="parent" location="end">Connexion</v-tooltip>
       <Icon icon="codicon:sign-in" width="23px" />
     </v-btn>
-  </router-link>
-
-  <v-btn icon v-if=" ! showLogoutButton">
-    <v-tooltip activator="parent" location="end">Déconnexion</v-tooltip>
-    <Icon icon="material-symbols:logout" width="23px" @click="handleDeconnexionButtonClick" />
+  </router-link> -->
+  <router-link  to="/login">
+  <v-btn icon style="color:white;">
+    <v-tooltip activator="parent" location="end" >Déconnexion</v-tooltip>
+    <Icon icon="material-symbols:logout" width="23px"  />
   </v-btn>
-
+  </router-link>
       </v-toolbar>
     </v-app-bar>
 
     <v-main>
       <router-view />
-      
+     
 
 
   
 
-
-
+      
     </v-main>
   </v-app>
 </template>
@@ -114,10 +113,10 @@
 <script setup>
 import { ref } from "vue";
 import { Icon } from '@iconify/vue';
-import axios from "axios";
 
 
 
+  
 
 
 const drawer = ref(null);
@@ -130,13 +129,12 @@ const handleConnexionButtonClick = () => {
   showLogoutButton.value = false ;
 };
 
-// Handler for the Déconnexion button click
-const handleDeconnexionButtonClick = () => {
+// Handler for the Déconnexion button clic= () => {
   // Add your logic here for handling the logout functionality
   // For now, we'll just update the button visibility
-  showLoginButton.value = false;
-  showLogoutButton.value = true;
-};
+//   showLoginButton.value = false;
+//   showLogoutButton.value = true;
+// };
 const items = [
   { icon: "mdi-account-circle ", text: "Personnel", route: "/listpersonnel" },
   { icon: "mdi-cash-register ", text: "Caisse", route: "/listcaisse" },
