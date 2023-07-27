@@ -12,7 +12,7 @@
       <caption>List Utilisateur</caption>
       <thead>
         <tr>
-          <th class="text-left">Image</th>
+          <!-- <th class="text-left">Image</th> -->
           <th class="text-left">Nom</th>
           <th class="text-left">Prenom</th>
           <th class="text-left">Role</th>
@@ -24,7 +24,7 @@
       </thead>
       <tbody v-if="paginatedUtilisateur.length > 0">
         <tr v-for="(item, index) in paginatedUtilisateur" :key="index">
-          <td>{{ item.image }}</td>
+          <!-- <td>{{ item.image }}</td> -->
           <td>{{ item.nom }}</td>
           <td>{{ item.prenom }}</td>
           <td>{{ item.role }}</td>
