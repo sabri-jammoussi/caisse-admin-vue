@@ -70,7 +70,7 @@
 
     <v-app-bar >
       <v-toolbar 
-      color="rgb(44, 44, 44)"
+      color="rgb(41, 40, 44)"
         dark prominent
   
       >
