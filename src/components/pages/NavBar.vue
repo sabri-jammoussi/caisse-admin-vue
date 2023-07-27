@@ -99,15 +99,10 @@
       >
         <template v-slot:activator="{ props }">
           <v-btn
-            icon
+          icon="mdi-dots-vertical "  
             v-bind="props"
+      style="color: aliceblue;"
           >
-            <v-avatar
-              color="brown"
-              size="large"
-            >
-              <span class="text-h5">!</span>
-            </v-avatar>
           </v-btn>
         </template>
         <v-card>
@@ -123,19 +118,21 @@
                 email
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn
+           <router-link to="/editprofile"> 
+            <v-btn
                 rounded
                 variant="text"
               >
-                Edit Account
+              Modifier le compte
               </v-btn>
+           </router-link>
               <v-divider class="my-3"></v-divider>
           <router-link  to="/login">
             <v-btn
                 rounded
                 variant="text"
               >
-                Disconnect
+              Déconnecter
               </v-btn>
           </router-link>
             </div>
@@ -164,7 +161,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { Icon } from '@iconify/vue';
+
 
 
 
