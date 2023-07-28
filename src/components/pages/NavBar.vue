@@ -4,9 +4,13 @@
     <v-navigation-drawer v-model="drawer"  >
       <v-layout>
        
-          <v-list density="compact" nav>
+        <v-list class="custom-list-margin">
+            <div class="logo-container">
+                <img src="@/assests/images/logo.jpg" alt="Logo">
+              </div>
             <router-link to="/" class="v-list-item__content">
-            <v-list-item
+          
+              <v-list-item
               prepend-icon="mdi-view-dashboard"
               value="home"
             >
@@ -72,7 +76,7 @@
 <div>
     <v-app-bar >
       <v-toolbar 
-      color="rgb(41, 40, 44)"
+      color="#000"
         dark prominent
   
       >
@@ -151,14 +155,34 @@
       
       
     </v-main>
-    <v-footer color="rgb(70, 70,70)" app>
+    <v-footer color="rgb(220, 220,220)" app>
      
 
-      <span style="color: white;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
+      <span style="color: #35D300;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
     </v-footer>
   </v-app>
 </template>
+<style scoped>
+.custom-list-margin {
+  margin-top: -8px; /* Adjust the margin-top value as per your preference */
+  width: 100%;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the logo horizontally */
+  height: 64px; 
+  width: 255px;
+  /* Adjust the height as needed */
+  background-color: #000000; /* Add a background color for the logo container */
+}
 
+.logo-container img {
+  max-height: 100%; /* Ensure the logo scales proportionally */
+  max-width: 100%; /* Ensure the logo scales proportionally */
+  object-fit: contain; /* Preserve the aspect ratio and fit the logo within the container */
+}
+</style>
 <script setup>
 import { ref } from "vue";
 
