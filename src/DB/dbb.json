@@ -6,6 +6,13 @@
       "Depot": "magasin Tanyour",
       "Souches": "Sfax",
       "id": 1
+    },
+    {
+      "Code": "AZERTY²a",
+      "Intitule": "aaaa",
+      "Depot": "magasin Tanyour",
+      "Souches": "Sfax",
+      "id": 2
     }
   ],
   "depots": [
@@ -31,51 +38,19 @@
   "utilisateurs": [
     {
       "role": "Administrateur",
-      "surnom": "azezea",
-      "nom": "az",
-      "prenom": "zae",
+      "surnom": "sabrouch",
+      "nom": "sabri",
+      "prenom": "jammoussi",
       "email": "sabrijm123@gmail.com",
-      "id": 11
+      "id": 1
     },
     {
-      "role": "Administrateur",
-      "surnom": "aszzae",
-      "nom": "az",
-      "prenom": "zea",
-      "email": "sabrijm123@gmail.com",
-      "id": 12
-    },
-    {
-      "role": "Administrateur",
-      "surnom": "zaea",
-      "nom": "aze",
-      "prenom": "aze",
-      "email": "sabrijm123@gmail.com",
-      "id": 13
-    },
-    {
-      "role": "Administrateur",
-      "surnom": "aze",
-      "nom": "eza",
-      "prenom": "zae",
-      "email": "sabrijm123@gmail.com",
-      "id": 14
-    },
-    {
-      "role": "Administrateur",
-      "surnom": "zaez",
-      "nom": "aez",
-      "prenom": "aze",
-      "email": "sabrijm123@gmail.com",
-      "id": 15
-    },
-    {
-      "role": "Administrateur",
-      "surnom": "z",
-      "nom": "z",
-      "prenom": "z",
-      "email": "a",
-      "id": 16
+      "role": "Manager",
+      "surnom": "piwpiw",
+      "nom": "ahmed",
+      "prenom": "mohsen",
+      "email": "ahmedMohsen@exemple.com",
+      "id": 2
     }
   ],
   "roles": [
@@ -94,9 +69,9 @@
   ],
   "authentification": [
     {
-      "firstName": "sabri",
+      "firstName": "sabriaaa",
       "lastName": "jammoussi",
-      "email": "sabrijm123@gmail.com",
+      "email": "sabrijm123@gmail.comaaaa",
       "password": "sabri123",
       "confirmPassword": "sabri123",
       "id": 1
