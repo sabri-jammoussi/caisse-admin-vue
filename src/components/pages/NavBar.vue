@@ -55,7 +55,16 @@
               </router-link>
       
             </v-list>
-         
+        <router-link to="/editprofile">
+          <v-list-item
+              prepend-icon="mdi-account"
+              value="about"
+            >
+            
+              <v-tooltip activator="parent" location="end">compte d'utilisateur</v-tooltip>
+              <span class="v-list-item__title">compte d'utilisateur</span>
+            </v-list-item>
+        </router-link>
 		   <router-link to="/about" class="v-list-item__content">
             <v-list-item
               prepend-icon="mdi-forum"
@@ -83,6 +92,7 @@
         <v-app-bar-nav-icon @click="drawer = !drawer" style="color:white;"></v-app-bar-nav-icon>
 
         <v-toolbar-title style="color:white;">Application</v-toolbar-title>
+        
           <!-- <router-link to="/">
             <v-btn icon>
               <v-icon>mdi-cart</v-icon>
@@ -185,14 +195,6 @@
 </style>
 <script setup>
 import { ref } from "vue";
-
-
-
-
-
-  
-
-
 const drawer = ref(null);
 const showLoginButton = ref(false);
 const showLogoutButton = ref(false);
