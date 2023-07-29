@@ -127,6 +127,7 @@ export default {
       surnom: {
         required: withMessage("surnom obligatoire", required),
         custom: withMessage("surnom existe déja", withAsync(SurnomIsUnique)),
+        
       },
       nom: { required: withMessage("nom obligatoire", required) },
       prenom: {
@@ -135,6 +136,7 @@ export default {
       email: {
         required: withMessage("email obligatoire ", required),
         custom: withMessage("Email existe déja", withAsync(EmailIsUnique)),
+        emailRule: withMessage("email doit avoir  @ and .domain", (v) => /.+@.+\..+/.test(v) ),
       },
     };
 
