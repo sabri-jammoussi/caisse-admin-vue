@@ -8,8 +8,9 @@
     </v-tooltip>
   </v-btn>
     </router-link>
+    <caption>List Utilisateur</caption>
     <v-table class="bordered">
-      <caption>List Utilisateur</caption>
+      
       <thead>
         <tr>
           <!-- <th class="text-left">Image</th> -->
@@ -19,7 +20,7 @@
           <th class="text-left">Surnom</th>
           <th class="text-left">Email</th>
 
-          <th class="text-left">Actions</th>
+          <th class="text-left" >Actions</th>
         </tr>
       </thead>
       <tbody v-if="paginatedUtilisateur.length > 0">
@@ -84,78 +85,94 @@
     </v-dialog>
   </div>
 </template>
-
 <script>
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { Icon } from '@iconify/vue';
+
 export default {
   name: "utilisateurs",
-  data() {
-    return {
-      utilisateurs: [],
-      currentPage: 1,
-      itemsPerPage: 9,
-      deleteDialog: false,
-      utilisateurToDelete: null,
-    };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.getUtilisateurs();
-    }, 1000);
-  },
   components: {
-		Icon,
-	},
-  computed: {
-    totalPages() {
-      return Math.ceil(this.utilisateurs.length / this.itemsPerPage);
-    },
-    paginatedUtilisateur() {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
-      return this.utilisateurs.slice(startIndex, endIndex);
-    },
+    Icon,
   },
-  methods: {
-    getUtilisateurs() {
-      axios
+  setup() {
+    const utilisateurs = ref([]);
+    const currentPage = ref(1);
+    const itemsPerPage = 9;
+    const deleteDialog = ref(false);
+    const utilisateurToDelete = ref(null);
+
+    const totalPages = computed(() => Math.ceil(utilisateurs.value.length / itemsPerPage));
+    const paginatedUtilisateur = computed(() => {
+      const startIndex = (currentPage.value - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return utilisateurs.value.slice(startIndex, endIndex);
+    });
+
+    const getUtilisateurs = async () => {
+      await axios
         .get("http://localhost:3000/utilisateurs")
         .then((res) => {
-          this.utilisateurs = res.data;
+          utilisateurs.value = res.data;
+          console.log("aaaaaaaaaaaa",utilisateurs)
+
         })
         .catch((err) => {
           console.error(err);
         });
-    },
-    deleteUtilisateur(utilisateurId) {
-      this.utilisateurToDelete = utilisateurId;
-      this.deleteDialog = true;
-    },
-    confirmDelete() {
-      const utilisateurId = this.utilisateurToDelete;
+    };
+
+    const deleteUtilisateur = (utilisateurId) => {
+      utilisateurToDelete.value = utilisateurId;
+      deleteDialog.value = true;
+    };
+
+    const confirmDelete = () => {
+      const utilisateurId = utilisateurToDelete.value;
       axios
         .delete(`http://localhost:3000/utilisateurs/${utilisateurId}`)
         .then((res) => {
           // Handle successful deletion if needed
           console.log(res);
           // Refresh the list of utilisateurs
-          this.getUtilisateurs();
+          getUtilisateurs();
         })
         .catch((err) => {
           console.error(err);
         })
         .finally(() => {
-          this.deleteDialog = false;
+          deleteDialog.value = false;
           location.reload();
         });
-    },
-    changePage(page) {
-      this.currentPage = page;
-    },
+    };
+
+    const changePage = (page) => {
+      currentPage.value = page;
+    };
+
+    onMounted(() => {
+      setTimeout(() => {
+        getUtilisateurs();
+      }, 1000);
+    });
+
+    return {
+      utilisateurs,
+      currentPage,
+      itemsPerPage,
+      deleteDialog,
+      utilisateurToDelete,
+      totalPages,
+      paginatedUtilisateur,
+      getUtilisateurs,
+      deleteUtilisateur,
+      confirmDelete,
+      changePage,
+    };
   },
 };
 </script>
+
 
 <style scoped>
 .bordered {
