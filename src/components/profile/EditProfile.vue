@@ -46,6 +46,7 @@
                       :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show2 ? 'text' : 'password'"
                       :error-messages="v$.password.$errors.map((e) => e.$message)"
+                      disabled="true"
                       name="input-10-1"
                       label="Password"
                       @blur="v$.password.touch"
@@ -64,22 +65,26 @@
                       :error-messages="v$.verify.$errors.map((e) => e.$message)"
                       name="input-10-1"
                       label="Confirm Password"
+                      disabled="true"
                       @blur="v$.verify.touch"
                       @input="v$.verify.$touch"
                       counter
                       @click:append="show3 = !show3"
                     ></v-text-field>
                   </v-col>
-                  <div class="mt-5">
-                    <p class="text-body-2">
-                      Avez vous de compte ?
-                      <a href="/login" class="register">Connexion</a>
-                    </p>
-                  </div>
-                  <v-col class="d-flex justify-end" cols="12">
+             
+                  <v-col cols="12" class="d-flex justify-center" >
                     <!-- Use v-btn with "success" class for green color -->
                     <div>
-                      <v-btn class="success" type="submit"> Register </v-btn>
+                      <v-btn class="successs" type="submit"> Modifier </v-btn>
+                    </div>
+                  </v-col>
+                  <v-col class="d-flex justify-center " cols="12">
+                    <!-- Use v-btn with "success" class for green color -->
+                    <div>
+                      <router-link to="/">
+                        <v-btn color="red"  type="submit"> Annuler </v-btn>
+                      </router-link>
                     </div>
                   </v-col>
                 </v-row>
@@ -233,13 +238,12 @@
   
   <style>
   /* Optional styling can be added here */
-  .success {
+  .successs {
     background: #2ecc71;
     color: #ffffff;
-    width: 500px;
   }
   
-  .success:hover {
+  .successs:hover {
     background: #27ae60;
     color: #ffffff;
   }
