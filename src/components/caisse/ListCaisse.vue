@@ -8,9 +8,9 @@
     </v-tooltip>
   </v-btn>
     </router-link>
-
+    <legend class="center-text">List Caisse</legend>
     <v-table class="bordered" >
-      <caption class="center-text">List Caisse</caption>
+    
       
     
       <thead >
@@ -171,22 +171,20 @@ export default {
 .ajoutbtn {
   display: flex;
   margin-right: 12px;
-    margin-left: auto;
-    width: 194px;
-
-
-  }
+  margin-left: auto;
+  width: 194px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
 
 .bordered th,
 .bordered td {
   border: 1px solid #e0e0e0;
   padding: 8px;
 }
-caption {
+legend {
   font-size: large;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
-  color:#005E7E;
 }
 
 </style>
