@@ -164,15 +164,11 @@ export default {
 };
 </script>
 <style scoped>
-.button-group {
-  margin-top: 20px;
-  justify-content: flex-end;
-  
-}
+
 .green-btn {
   background: #36b120;
   color: #ffffff;
-
+  margin-left: 13px;
 }
 
 .red-btn {

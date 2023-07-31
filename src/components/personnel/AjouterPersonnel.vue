@@ -49,7 +49,7 @@
               prepend-icon="mdi-camera"
             ></v-file-input> -->
 
-            <v-row justify="flex-end"     class="button-group">
+            <v-row justify="flex-end"     >
               <v-btn type="submit" class="button-85 green-btn">Ajouter</v-btn>
               <router-link to="/listpersonnel">
                 <v-btn type="submit" class="button-85 red-btn">Annuler</v-btn>
@@ -198,15 +198,11 @@ export default {
 </script>
 
 <style scoped>
-.button-group {
-  margin-top: 20px;
-  justify-content: flex-end;
-  
-}
+
 .green-btn {
   background: #36b120;
   color: #ffffff;
-
+  margin-left: 13px;
 }
 
 .red-btn {
@@ -225,5 +221,4 @@ export default {
   background: #b31010;
   color: #ffffff;
 }
-
 </style>
