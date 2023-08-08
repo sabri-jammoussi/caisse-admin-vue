@@ -46,7 +46,7 @@
                       :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show2 ? 'text' : 'password'"
                       :error-messages="v$.password.$errors.map((e) => e.$message)"
-                      disabled="true"
+                     
                       name="input-10-1"
                       label="Password"
                       @blur="v$.password.touch"
@@ -65,7 +65,7 @@
                       :error-messages="v$.verify.$errors.map((e) => e.$message)"
                       name="input-10-1"
                       label="Confirm Password"
-                      disabled="true"
+                     
                       @blur="v$.verify.touch"
                       @input="v$.verify.$touch"
                       counter
@@ -101,6 +101,7 @@
   import axios from "axios";
   import router from "@/router/index";
   import { useVuelidate } from "@vuelidate/core";
+  import {useUserStore } from"@/store/store"; 
   import {
     required,
     helpers,
@@ -120,29 +121,13 @@
       const show2 = ref(false);
       const show3 = ref(false);
       const utilisateurOrigin = ref(null);
+      const store = useUserStore();  
+      const utilisateurId = store.user.id;
       // const passwordMatch = () => password.value === verify.value || 'Password must match';
     //   const emailRules = [
     //     (v) => /.+@.+\..+/.test(v)
     //   ];
-      const EmailIsUnique = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:3000/authentification?email=${email.value}`
-          );
-  
-          const existingEmail = response.data.find(
-            (utilisateur) => utilisateur.email === email.value
-          );
-  
-          console.log(existingEmail);
-          return !existingEmail;
-  
-          // Return false if email is not unique, true otherwise
-        } catch (error) {
-          console.error(error);
-          return false;
-        }
-      };
+      /*  */
       const rules = {
         firstName: {
           required: withMessage("First Name obligatoire", required),
@@ -154,7 +139,6 @@
         },
         email: {
           required: withMessage("E-mail obligatoire", required),
-          custom: withMessage("Email existe déja", withAsync(EmailIsUnique)),
           emailRule: withMessage("email doit avoir  @ and .domain", (v) => /.+@.+\..+/.test(v) ),
         },
         password: {
@@ -177,7 +161,7 @@
       async function getUtilisateurData() {
         try {
           const res = await axios.get(
-            `http://localhost:3000/authentification/1`
+            `http://localhost:3000/authentification/${utilisateurId}`
           );
           console.log("dataaa",res.data);
           const utilisateurData = res.data;
@@ -186,22 +170,23 @@
           lastName.value = utilisateurData.lastName;
           email.value = utilisateurData.email;
           password.value = utilisateurData.password;
-          verify.value = utilisateurData.verify;
+          verify.value = utilisateurData.confirmPassword;
         } catch (error) {
           console.error(error);
         }
       }
 
       const submitChanges = async () => {
-        const utilisateurId = router.currentRoute.value.params.id;
+
 
         try {
           v$.value.$touch();
           if (!v$.value.$invalid) {
-            await axios.put(`http://localhost:3000/authentification/1`, {
+            await axios.put(`http://localhost:3000/authentification/${utilisateurId}`, {
               firstName: firstName.value,
               lastName: lastName.value,
               email: email.value,
+
               password: password.value,
               confirmPassword: verify.value,
             });
