@@ -24,7 +24,7 @@
                             <Icon
                               icon="streamline:interface-weather-windmill-windmill-velocity-weather-wind"
                               width="60px"
-                              color="green"
+                              color="#13D013"
                             />
                           </div>
                           <v-list-item-subtitle
@@ -59,9 +59,9 @@
                         <v-list-item-content>
                           <div class="mb-4">
                             <Icon
-                              icon="et:profile-male"
+                              icon="iconoir:profile-circle"
                               width="60px"
-                              color="green"
+                              color="#13D013"
                             />
                           </div>
                           <v-list-item-subtitle
@@ -98,7 +98,7 @@
                             <Icon
                               icon="clarity:tasks-line"
                               width="60px"
-                              color="green"
+                              color="#13D013"
                             />
                           </div>
                           <v-list-item-subtitle
@@ -135,7 +135,7 @@
                             <Icon
                               icon="material-symbols:search"
                               width="60px"
-                              color="green"
+                              color="#13D013"
                             />
                           </div>
                           <v-list-item-subtitle
@@ -172,7 +172,7 @@
                             <Icon
                               icon="fontisto:world-o"
                               width="60px"
-                              color="green"
+                              color="#13D013"
                             />
                           </div>
                           <v-list-item-subtitle
