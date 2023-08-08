@@ -127,9 +127,9 @@
               >
                 <span class="text-h5">v</span>
               </v-avatar>
-              <h3>name</h3>
+              <h3>{{userName}}</h3>
               <p class="text-caption mt-1">
-                email
+               {{userEmail}}
               </p>
               <v-divider class="my-3"></v-divider>
            <router-link to="/editprofile"> 
@@ -168,7 +168,7 @@
     <v-footer color="rgb(220, 220,220)" app>
      
 
-      <span style="color: #35D300;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
+      <span style="color: #16DF17;">&copy;  {{ new Date().getFullYear() }} -APBS</span>
     </v-footer>
   </v-app>
 </template>
@@ -183,6 +183,7 @@
   justify-content: center; /* Center the logo horizontally */
   height: 64px; 
   width: 255px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* Adjust the height as needed */
   background-color: #000000; /* Add a background color for the logo container */
 }
@@ -194,7 +195,13 @@
 }
 </style>
 <script setup>
-import { ref } from "vue";
+
+import { computed, ref } from "vue";
+import { useUserStore } from '@/store/store.js';
+const userStore = useUserStore();
+
+
+console.log("+++++++++++++user name in navbar",userStore.user)
 const drawer = ref(null);
 const showLoginButton = ref(false);
 const showLogoutButton = ref(false);
@@ -217,7 +224,8 @@ const items = [
   //{ icon: 'mdi-cart' ,text: 'Client', route: '/' },
   // { icon :'mdi-cash-register   ',text: 'Click Me4', route: '/' },
 ];
-
+const userName = computed(()=>userStore.user.firstName)
+const userEmail = computed(()=>userStore.user.email)
 const showAdministrationMenu = ref(false);
 
 const navigateToPage = (route) => {
