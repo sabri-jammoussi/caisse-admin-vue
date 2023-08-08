@@ -56,7 +56,7 @@ const loginEmail = ref('');
 const loginPassword = ref('');
 const show1 = ref(false);
 const errorText = ref('');
-const useremail = useUserStore();
+const store = useUserStore();
 const emailuser = ref();
 
 const rules = {
@@ -78,6 +78,10 @@ const validate = async () => {
       const user = usersWithEmail[0];
       if (user.password === loginPassword.value) {
         router.push({ name: 'Home' });
+        const emailuser = loginEmail.value;
+        store.setEmail(emailuser);
+        await store.fetchUser();
+
       } else {
         errorText.value = "Les informations d'identification invalides. Veuillez vérifier votre e-mail et votre mot de passe.";
       }
@@ -91,8 +95,8 @@ const validate = async () => {
 
 // Use onMounted hook to call validate function when the component is mounted
 onMounted(async () => {
-  const emailuser = loginEmail.value;
-  useremail.setEmail(emailuser);
+/*   const emailuser = loginEmail.value;
+  useremail.setEmail(emailuser); */
 });
 </script>
 
