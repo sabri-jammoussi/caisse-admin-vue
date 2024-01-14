@@ -22,6 +22,7 @@ Docs, visit [vuejs.org](https://vuetifyjs.com/en/).
 
 ##  Stay In Touch
 - [facebook](https://www.facebook.com/sabri.jammoussi.9)
+- [linkedin](https://www.linkedin.com/in/jammoussi-sabri-488005286/)
 
 
 ## Project setup
