@@ -6,19 +6,18 @@ This project is based with VueJs 3 and Vuetify 3  for management of Touch box ("
 I think you like my project .
 
 
-
-![Logo]([https://vuejs.org/images/logo.png](https://iconduck.com/icons/94662/nextjs))
+<a href="https://marketplace.visualstudio.com/items?itemName=iJS.reactnextjssnippets"><img src="https://vsmarketplacebadge.apphb.com/installs-short/iJS.reactnextjssnippets.svg?style=for-the-badge&colorA=85bf00&colorB=679400&label=DOWNLOADS"/></a> <a href="https://code.visualstudio.com/updates/v1_25"><img src="https://vsmarketplacebadge.apphb.com/rating-star/iJS.reactnextjssnippets.svg?style=for-the-badge&colorA=38B8F0&colorB=3726A6"/></a> 
 
 
 ## Introduction
-Vue (pronounced `/vjuː/`, like view) is a **progressive framework** for building user interfaces. It is designed from the ground up to be incrementally adoptable, and can easily scale between a library and a framework depending on different use cases. It consists of an approachable core library that focuses on the view layer only, and an ecosystem of supporting libraries that helps you tackle complexity in large Single-Page Applications.
+Next.js (pronounced /ˈnɛkst dʒeɪ/) is a progressive framework for building web applications. It is designed from the ground up to be incrementally adoptable, and can seamlessly transition between a lightweight library and a robust framework based on diverse use cases. Next.js comprises a versatile core library that emphasizes the view layer, along with a thriving ecosystem of auxiliary libraries, empowering you to manage intricacies in expansive Single-Page Applications.
 
 ## Documentation
-Vue JS  3 : 
-To check out [live examples](https://vuejs.org/examples/) and docs, visit [vuejs.org](https://vuejs.org/guide/introduction.html) .
 
-Vuetify : 
-Docs, visit [vuejs.org](https://vuetifyjs.com/en/).
+Next.js and Node.js:
+To explore live examples and documentation for Next.js, visit nextjs.org.
+
+Express.js: For documentation on Node.js with Express, visit expressjs.com.
 
 ##  Stay In Touch
 - [facebook](https://www.facebook.com/sabri.jammoussi.9)
