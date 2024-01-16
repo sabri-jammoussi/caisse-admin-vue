@@ -5,8 +5,7 @@ This project is based with VueJs 3 and Vuetify 3  for management of Touch box ("
 ("sign_in & sign_up") . It's simple templates with all the CRUD ("create & read & update & delete "). 
 I think you like my project .
 
-
-<a href="https://marketplace.visualstudio.com/items?itemName=iJS.reactnextjssnippets"><img src="https://vsmarketplacebadge.apphb.com/installs-short/iJS.reactnextjssnippets.svg?style=for-the-badge&colorA=85bf00&colorB=679400&label=DOWNLOADS"/></a> <a href="https://code.visualstudio.com/updates/v1_25"><img src="https://vsmarketplacebadge.apphb.com/rating-star/iJS.reactnextjssnippets.svg?style=for-the-badge&colorA=38B8F0&colorB=3726A6"/></a> 
+![Logo](https://vuejs.org/images/logo.png)
 
 
 ## Introduction
