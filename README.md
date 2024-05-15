@@ -9,8 +9,7 @@ I think you like my project .
 
 
 ## Introduction
-Next.js (pronounced /ˈnɛkst dʒeɪ/) is a progressive framework for building web applications. It is designed from the ground up to be incrementally adoptable, and can seamlessly transition between a lightweight library and a robust framework based on diverse use cases. Next.js comprises a versatile core library that emphasizes the view layer, along with a thriving ecosystem of auxiliary libraries, empowering you to manage intricacies in expansive Single-Page Applications.
-
+Vue.js is a progressive framework for building web applications. It's engineered to be incrementally adoptable, allowing for seamless transitions between a lightweight library and a powerful framework, depending on the requirements of your project. Vue.js centers around a flexible core library that prioritizes the view layer, supplemented by a vibrant ecosystem of complementary libraries. This setup equips you to effectively handle complexities within extensive Single-Page Applications.
 ## Documentation
 
 Next.js and Node.js:
